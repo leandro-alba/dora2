@@ -6,14 +6,14 @@
           <li>
             
                 <div class="card mb-3 ">
-                    <div class="row g-0">
-                      <div class="col-md-4 text-bg-light">
+                    <div class="row g-0 text-bg-light">
+                      <div class="col-md-4 ">
                         <img src="<%=posts[i].image%>" class="img-fluid rounded-start" alt="...">
                       </div>
                       <div class="col-md-8">
-                        <div class="card-body text-bg-light">
+                        <div class="card-body ">
                             <a href="/post/<%=posts[i]._id%>"><h5 class="card-title"><%=posts[i].question%></h5></a>
-                          <p class="card-text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil modi voluptas voluptates quam rem quibusdam.</p>
+                          <p class="card-text"><%=posts[i].description%></p>
                           <p class="card-text"><small class="text-muted">Created by <%=posts[i].user%></small></p>
                         </div>
                       </div>
@@ -25,7 +25,8 @@
         </ul>
         <div class="col-6">
             <img src="https://i.ibb.co/5r3WYGb/undraw-online-message.png" alt="#" class="img-fluid border-bottom">
-
+            <span class="text-muted row justify-content-center">github | linkedln | twitter </span>
+           
         </div>
     </div>
     

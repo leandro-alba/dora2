@@ -5,6 +5,7 @@ module.exports = {
     try {
       await Answer.create({
         answer: req.body.answer,
+        user: req.params.id,
         likes: 0,
         post: req.params.id,
       });

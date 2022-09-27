@@ -1,58 +1,79 @@
 <%- include('partials/postheader') -%>
 <div class="container">
-    <div class="row justify-content-center mt-5">
+  <div class="row justify-content-center mt-5">
       <div class="col-6">
-        
-        <img class="img-fluid" src="<%=post.image%>" />
-       
+
+        <div class="text-bg-light border border-bottom-0 rounded-top">
+          <p>Question made by <strong><%= post.user%></strong> </p>
+          <div class="col-2">
+            tags: <span class="badge rounded-pill text-bg-info"><%= post.tag %></span>
+          </div>
+          <img class="img-fluid" src="<%=post.image%>" />
+        </div>
+
         <div class="row justify-content-between border-bottom text-bg-light">
             
             <h2><%= post.question %></h2>
+            <p><%= post.description %></p>
+            <span class="text-muted">posted on <%= post.createdAt %></span>
+            
           <form
             class="col-1"
             action="/post/likePost/<%= post.id %>?_method=PUT"
             method="POST"
           >
-            <button class="btn btn-danger fa fa-heart" type="submit"></button><h3><%= post.likes %></h3>
+            <button class="btn btn-danger fa fa-heart" type="submit"></button><h3><%=post.likes%></h3>
             <%if(post.user == user.id){ %>
           </form>
           
           <form
             action="/post/deletePost/<%= post.id %>?_method=DELETE"
             method="POST"
-            class="col-3"
+            class="col-1"
           >
             <button class="btn btn-danger fa fa-trash" type="submit"></button>
           </form>
+         
           <%}%>
-          
         </div>
-
-        <ul>
-            <% for(var i=0; i<answers.length; i++) {%>
-              <li class=" mt-5">
-                <%= answers[i].answer%>
-              </li>
-            <% } %>
-            </ul>
-            
-            <div class="mt-5">
-              <h4>Add an Answer</h4>
-              <form action="/answer/createAnswer/<%=post.id %>" method="POST"> <!--error could be in one of the slashes-->
-                <div class="mb-3">
-                    <!-- <label for="title" class="form-label">Comment</label> -->
-                    <input type="text" class="form-control" id="answer" name="answer" height="30px">
-                </div>
-                <button type="submit" class="btn btn-danger" >Submit</button>
-              </form>
+        
+          <div class="mt-5">
+            <h4>Add an Answer</h4>
+            <form action="/answer/createAnswer/<%=post.id %>" method="POST"> 
+              <div class="mb-3">
+                 
+                  <input type="text" class="form-control" id="answer" name="answer" height="30px">
+              </div>
+              <button type="submit" class="btn btn-danger" >Submit</button> 
+              
+            </form>
+          </div>
+        
+        <ul class="list-unstyled">
+          <% for(var i=0; i<answers.length; i++) {%>
+  
+            <div class="card mb-3 ">
+              <div class="row g-0 text-bg-light">
+                <li>
+                  <div class="col-md-8">
+                    <div class="card-body ">
+                  
+                      <p class="card-text"><%= answers[i].answer%></p>
+                      <p class="card-text"><small class="text-muted">Answered by <strong><%=answers[i].user%></strong> <span class="text-info">on</span> <%=answers[i].createdAt%></small></p>
+                
+                    </div>
+                  </div>
+              
+              </div>
             </div>
-        
-      
-      
-        
-    
-     
-    </div>
+          </li>
+          <% } %>
+      </ul>
+      </div>
   </div>
+</div>
+
+
+      <!-- answer loop start --> 
 
 <%- include('partials/footer') -%>

@@ -35,6 +35,8 @@ module.exports = {
 
       await Post.create({
         question: req.body.title,
+        description: req.body.description,
+        tag: req.body.tag,
         image: result.secure_url,
         cloudinaryId: result.public_id,
         //caption: req.body.caption,
