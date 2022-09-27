@@ -1,0 +1,58 @@
+<%- include('partials/postheader') -%>
+<div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-6">
+        
+        <img class="img-fluid" src="<%=post.image%>" />
+       
+        <div class="row justify-content-between border-bottom text-bg-light">
+            
+            <h2><%= post.question %></h2>
+          <form
+            class="col-1"
+            action="/post/likePost/<%= post.id %>?_method=PUT"
+            method="POST"
+          >
+            <button class="btn btn-danger fa fa-heart" type="submit"></button><h3><%= post.likes %></h3>
+            <%if(post.user == user.id){ %>
+          </form>
+          
+          <form
+            action="/post/deletePost/<%= post.id %>?_method=DELETE"
+            method="POST"
+            class="col-3"
+          >
+            <button class="btn btn-danger fa fa-trash" type="submit"></button>
+          </form>
+          <%}%>
+          
+        </div>
+
+        <ul>
+            <% for(var i=0; i<answers.length; i++) {%>
+              <li class=" mt-5">
+                <%= answers[i].answer%>
+              </li>
+            <% } %>
+            </ul>
+            
+            <div class="mt-5">
+              <h4>Add an Answer</h4>
+              <form action="/answer/createAnswer/<%=post.id %>" method="POST"> <!--error could be in one of the slashes-->
+                <div class="mb-3">
+                    <!-- <label for="title" class="form-label">Comment</label> -->
+                    <input type="text" class="form-control" id="answer" name="answer" height="30px">
+                </div>
+                <button type="submit" class="btn btn-danger" >Submit</button>
+              </form>
+            </div>
+        
+      
+      
+        
+    
+     
+    </div>
+  </div>
+
+<%- include('partials/footer') -%>

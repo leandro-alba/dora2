@@ -1,0 +1,65 @@
+<%- include('partials/profileheader') -%>
+
+<main class="container p-5">
+    <div class="row border-bottom">
+        <div class="col-2">
+            <img src="https://i.ibb.co/nzcwpCg/undraw-female-avatar.png" alt="avatar" width="130px" height="130" >
+        </div>
+        <div class="col-6 mt-auto">
+            <p><strong>User Name</strong>: <%= user.userName %></p>
+            <p><strong>Email</strong>: <%= user.email %></p>
+          
+        </div>
+ 
+        <div class="col-4">
+           
+        </div>
+        <!-- <div class="col-3"></div> -->
+    </div>
+    <div class="row">
+        <div class="col-6 border-bottom">
+            <div class="mt-5">
+                <h2>Add a question</h2>
+                <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+                  <div class="mb-3">
+                      <label for="title" class="form-label">Question</label>
+                      <input type="text" class="form-control" id="title" name="title">
+                  </div>
+                  <!-- <div class="mb-3">
+                    <label for="caption" class="form-label">Tags</label>
+                    <textarea class="form-control" id="tag" name="caption"></textarea>
+                  </div> -->
+                  <div class="mb-3">
+                    <label for="imgUpload" class="form-label">Image (not required)</label>
+                    <input type="file" class="form-control" id="imageUpload" name="file">
+                  </div>
+                  <button type="submit" class="btn btn-danger position-relative top-0" value="Upload">Submit</button>
+                  
+                </form>
+              </div>
+        </div>
+        <div class="col-6"></div>   
+    </div>
+    <div class="row border-bottom">
+        <div class="col-6 ">
+                <ul class="row list-unstyled ">
+                <% for(var i=0; i<posts.length; i++) {%>
+                  <li class=" justify-content-between mt-2 shadow-sm text-bg-light">
+                    <a href="/post/<%= posts[i]._id%>">
+                      <!-- <img class="img-fluid" src="<%= posts[i].image%>"> -->
+                      <h3 class="p-5"><%= posts[i].question%></h3>
+                    </a>
+                  </li>
+                <% } %>
+                </ul>
+                <div class="row justify-content-center mt-5">
+                  <a class="btn btn-danger" href="/feed">Return to Feed</a>
+                </div>  
+        </div>
+        <div class="col-6"></div>
+    </div>
+</main>
+<div class="container">
+    
+</div>
+<%- include('partials/footer') -%>
