@@ -4,7 +4,7 @@
       <div class="col-6">
 
         <div class="text-bg-light border border-bottom-0 rounded-top">
-          <p>Question made by <strong><%= post.user%></strong> </p>
+          <p>Question made by <strong><%= post.userName%></strong> </p>
           <div class="col-2">
             tags: <span class="badge rounded-pill text-bg-info"><%= post.tag %></span>
           </div>
@@ -15,7 +15,7 @@
             
             <h2><%= post.question %></h2>
             <p><%= post.description %></p>
-            <span class="text-muted">posted on <%= post.createdAt %></span>
+            <span class="text-muted">asked on <%= post.createdAt.toDateString() %></span>
             
           <form
             class="col-1"
@@ -23,8 +23,9 @@
             method="POST"
           >
             <button class="btn btn-danger fa fa-heart" type="submit"></button><h3><%=post.likes%></h3>
-            <%if(post.user == user.id){ %>
           </form>
+            <%if(post.user == user.id){ %>
+          
           
           <form
             action="/post/deletePost/<%= post.id %>?_method=DELETE"
@@ -52,14 +53,14 @@
         <ul class="list-unstyled">
           <% for(var i=0; i<answers.length; i++) {%>
   
-            <div class="card mb-3 ">
+            <div class="card ">
               <div class="row g-0 text-bg-light">
                 <li>
-                  <div class="col-md-8">
+                  <div class="">
                     <div class="card-body ">
                   
                       <p class="card-text"><%= answers[i].answer%></p>
-                      <p class="card-text"><small class="text-muted">Answered by <strong><%=answers[i].user%></strong> <span class="text-info">on</span> <%=answers[i].createdAt%></small></p>
+                      <p class="card-text"><small class="text-muted">Answered by <strong><%=answers[i].userName%></strong> <span class="text-info">on</span> <%=answers[i].createdAt.toDateString()%></small></p>
                 
                     </div>
                   </div>
