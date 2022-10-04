@@ -4,11 +4,14 @@
       <div class="col-6">
 
         <div class="text-bg-light border border-bottom-0 rounded-top">
-          <p>Question made by <strong><%= post.userName%></strong> </p>
+          <p>Question made by <strong><%= post.user.userName%></strong> </p>
           <div class="col-2">
             tags: <span class="badge rounded-pill text-bg-info"><%= post.tag %></span>
           </div>
-          <img class="img-fluid" src="<%=post.image%>" />
+         
+            <img class="img-fluid" src="<%=post.image%>" />
+        
+          
         </div>
 
         <div class="row justify-content-between border-bottom text-bg-light">
@@ -18,11 +21,11 @@
             <span class="text-muted">asked on <%= post.createdAt.toDateString() %></span>
             
           <form
-            class="col-1"
+            class="col-3"
             action="/post/likePost/<%= post.id %>?_method=PUT"
             method="POST"
           >
-            <button class="btn btn-danger fa fa-heart" type="submit"></button><h3><%=post.likes%></h3>
+            <button class="btn btn-danger fa fa-heart" type="submit"></button><span class="fs-5"> <%=post.likes%></span>
           </form>
             <%if(post.user == user.id){ %>
           
@@ -60,8 +63,8 @@
                     <div class="card-body ">
                   
                       <p class="card-text"><%= answers[i].answer%></p>
-                      <p class="card-text"><small class="text-muted">Answered by <strong><%=answers[i].userName%></strong> <span class="text-info">on</span> <%=answers[i].createdAt.toDateString()%></small></p>
-                
+                      <p class="card-text"><small class="text-muted">Answered by <strong><%=answers[i].user%></strong> <span class="text-info">on</span> <%=answers[i].createdAt.toDateString()%></small></p>
+                      
                     </div>
                   </div>
               
